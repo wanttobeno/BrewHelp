@@ -1,5 +1,9 @@
 
 
+##### homebrew网页搜索
+
+https://formulae.brew.sh/
+
 ##### Homebrew app real link extract
 
 

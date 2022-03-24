@@ -46,7 +46,7 @@ def brew_find(app_name):
     if depends is not False and len(depends) > 1:
         print("依赖项目 %s" % str(' '.join(depends[0])))
     res_list = jsonpath.jsonpath(json_obj, "$..files")
-    if res_list is False or len(res_list) < 1:
+    if res_list is False or len(res_list) < 1 :
         print("无下载地址数据")
         return
     stable_version = ''
@@ -56,7 +56,7 @@ def brew_find(app_name):
     for list_dict in res_list:
         for key in list_dict:
             d_link = brew_get_dlink(list_dict[key]['url'])
-            print("%s_%s_%s.tar.gz  %s" % (app_name, stable_version, key, d_link))
+            print("%s_%s.tar.gz  %s \n" % (app_name, key, d_link))
     history = jsonpath.jsonpath(json_obj, "$..versioned_formulae")
     if history is not False and len(history) > 0:
         print("历史版本大全 %s" % ' '.join(history[0]))
@@ -69,7 +69,10 @@ if __name__ == '__main__':
     # brew_find('mtr')
     # brew_find('go')
     # brew_find('go@1.16')
-    input_key = input('请输入想要解析（如：mtr）：')
+    if sys.version > "3":
+    	input_key = input('请输入想要解析（如：mtr）：')
+    else:
+    	input_key = raw_input('请输入想要解析（如：mtr）：')
     brew_find(input_key)
 
     end_time = int(time.time())
